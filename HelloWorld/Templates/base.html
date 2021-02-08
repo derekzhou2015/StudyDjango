@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{title}}</title>
+  <style>
+    body {
+      margin: 0 auto;
+      padding: 0;
+      width: 1000px;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      display: inline-block;
+      margin: 0 50px;
+    }
+
+    table {
+      margin: 0 auto;
+      width: 80%;
+    }
+
+    form table {
+      width: 50%;
+    }
+
+    form tbody td {
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Hello World</h1>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/account/list">Accounts</a></li>
+      <li><a href="/book/list">Books</a></li>
+      <li><a href="/show">Show</a></li>
+      <li><a href="/admin">Admin</a></li>
+    </ul>
+  </header>
+  {% block mainbody %} {% endblock mainbody %}
+  <footer>Copyright Kerwin 2021.</footer>
+</body>
+
+</html>

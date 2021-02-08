@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% load my_tags %} {% block mainbody %}
+<div>
+  {% for i in context %} {%ifequal 'A' i %}
+  <h1>I'm first</h1>
+  {%endifequal%} {% include 'news.html' %}
+  <h1>
+    {%my_tags i forloop.counter forloop.counter0%}
+    {{i|my_filter}}---{{forloop.counter}}---{{forloop.counter0}}---{{forloop.revcounter}}---{{forloop.revcounter0}}---{{forloop.first}}--{{forloop.last}}
+  </h1>
+  {#------#} {%ifnotequal 'A' i %}
+  <h1>I'm not first</h1>
+  {%endifnotequal%} {% empty %}
+
+  <h1>啥也没有了~</h1>
+  {% endfor %} {%my_html 'aaa' 'bbb'%}
+</div>
+{% endblock mainbody %}

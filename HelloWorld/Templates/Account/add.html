@@ -1,0 +1,94 @@
+{% extends 'base.html' %} {% load my_tags %} {% block mainbody %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+        <thead>
+            <tr>
+                <td colspan="2">Insert a new recode.</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>First Name</td>
+                <td>
+                    <input type="text" name="first_name" id="id_first_name" placeholder="Your first name." required
+                        value="{{form.first_name.value|default:''}}" />
+                    {{form.first_name.errors.0}}
+                </td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td>
+                    <input type="text" name="last_name" id="last_name" placeholder="Your last name." required
+                        value="{{form.last_name.value|default:''}}" />
+                    {{form.last_name.errors.0}}
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 150px">Email</td>
+                <td>
+                    <input type="email" name="email" id="email" placeholder="Your email" required
+                        value="{{form.email.value|default:''}}" />
+                    {{form.email.errors.0}}
+                    {{form.errors.0}}
+                </td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td>
+                    <input type="password" name="password" id="password" placeholder="Password." required
+                        value="{{form.password.value|default:''}}" />
+                    {{form.password.errors.0}}
+                </td>
+            </tr>
+            {% if not edit %}
+            <tr>
+                <td>Confirm</td>
+                <td>
+                    <input type="password" name="confirm" id="Confirm" placeholder="Confirm your password." required />
+                </td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td>Gender</td>
+                <td>
+                    {{form.gender}}
+                </td>
+            </tr>
+            <tr>
+                <td>Telephone</td>
+                <td>
+                    <input type="tel" name="tel" id="tel" placeholder="Your telephgone number." required
+                        value="{{form.tel.value|default:''}}" />
+                    {{form.tel.errors.0}}
+                </td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>
+                    <input type="text" name="addr" id="addr" placeholder="Your address." required
+                        value="{{form.addr.value|default:''}}" />
+                    {{form.addr.errors.0}}
+                </td>
+            </tr>
+            <tr>
+                <td>Birthday</td>
+                <td>
+
+                    <input type="date" name="birthday" id="birthday" placeholder="Your birthday." required
+                        value="{{form.birthday.value}}" />
+                    {{form.birthday.errors.0}}
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="{{form|yesno:'Save,Create your account'}}" />
+                    <input type="reset" value="Clear" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="hidden" name="id" value="{{form.id.value|default:''}}" />
+</form>
+{% endblock mainbody %}
