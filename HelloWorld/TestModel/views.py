@@ -5,9 +5,9 @@ from json import loads
 # Create your views here.
 
 
-def list(request):
+def index(request):
     l1 = Account.objects.all().order_by('-id')
-    return render(request, 'Account/list.html', {'context': l1})
+    return render(request, 'Account/index.html', {'context': l1})
 
 
 def add(request):
@@ -32,7 +32,7 @@ def add(request):
             acc.password = data['password']
             acc.acc_details = acc_details
             acc.save()
-            return redirect('../list')
+            return redirect('../')
         else:
             return render(request, 'Account/add.html', {'form': form})
 
@@ -68,7 +68,7 @@ def edit(request):
             obj.password = data['password']
             obj.acc_details = obj.acc_details
             obj.save()
-            return redirect('../list')
+            return redirect('../')
     return render(request, 'Account/add.html', {'form': form, 'edit': True})
 
 
@@ -77,4 +77,4 @@ def delete(request):
     account = Account.objects.get(pk=id)
     AccountDetails.objects.get(account=account).delete()
 
-    return redirect('../list')
+    return redirect('../')

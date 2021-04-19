@@ -26,7 +26,7 @@ SECRET_KEY = '_2%jhh01%(4)2m2ag()-j$+=8rrf(vb0f*yxotern@6d^vsmfd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.50.130', '127.0.0.1']
 
 
 # Application definition
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'TestModel',
-    'BookModel'
+    'BookModel',
+    'DictationModel'
 ]
 
 MIDDLEWARE = [
@@ -118,6 +119,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'Media')
 
 
 # Static files (CSS, JavaScript, Images)

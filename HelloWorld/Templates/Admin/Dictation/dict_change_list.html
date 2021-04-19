@@ -1,0 +1,16 @@
+{%extends 'admin/change_list.html' %} 
+{% block object-tools-items %}
+    <li><a href="upload/">Upload</a></li>
+    {{block.super}} 
+{%endblock object-tools-items %}
+{% block content %}
+    {{block.super }}
+    <audio id='audio1'></audio>
+    <script>
+        function on_play(src){
+           var a_1 = document.getElementById('audio1');
+           a_1.src = src;
+           a_1.play();
+        }
+    </script>
+{%endblock %}

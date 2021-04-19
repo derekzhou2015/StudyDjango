@@ -1,0 +1,42 @@
+body {
+  margin: 0 auto;
+  padding: 0;
+  width: 1300px;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
+.menu li {
+  display: inline-block;
+  margin: 0 50px;
+}
+
+table {
+  margin: 0 auto;
+  width: 90%;
+}
+
+form table {
+  width: 50%;
+}
+
+form tbody td {
+  text-align: left;
+}
+
+.nav .nav-bar {
+  width: 300px;
+  line-height: 200%;
+  text-align: center;
+  background: #f9f9f9;
+  vertical-align: top;
+}
+
+.nav .container {
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}

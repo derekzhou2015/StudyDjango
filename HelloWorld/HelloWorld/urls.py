@@ -16,12 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
-
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     path('', views.index),
     path('hello/', views.hello),
     path('admin/', admin.site.urls),
     path('show/', views.show),
     path('account/', include('TestModel.urls')),
-    path('book/', include('BookModel.urls'))
+    path('books/', include('BookModel.urls')),
+    path('dict/', include('DictationModel.urls')),
 ]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+admin.AdminSite.site_title = 'My platform'
+admin.AdminSite.site_header = 'My platform administration'

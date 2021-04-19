@@ -1,0 +1,7 @@
+{%extends 'base.html'%}{%block mainbody%}
+ <form action="" method="POST">
+        {% csrf_token %} {{ form.as_p}}
+        <input type="submit" value="OK" />
+        <input type="reset" value="Clear" />
+      </form>
+{%endblock mainbody%}

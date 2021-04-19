@@ -1,5 +1,5 @@
 from django.db import models
-from . import common
+from HelloWorld.Common import common
 # Create your models here.
 
 

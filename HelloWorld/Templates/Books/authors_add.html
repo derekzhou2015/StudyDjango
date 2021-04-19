@@ -1,0 +1,16 @@
+{%extends 'base.html'%}{%block mainbody%}
+<table class="nav">
+  <tr>
+    <td class="nav-bar">{%include 'books/nav.html'%}</td>
+    <td class="container">
+      <form action="" method="POST">
+        {% csrf_token %} {{form1.as_p}}
+        <hr />
+        {{form2.as_p}}
+        <input type="submit" value="Save" />
+        <input type="reset" value="Clear" />
+      </form>
+    </td>
+  </tr>
+</table>
+{%endblock mainbody%}

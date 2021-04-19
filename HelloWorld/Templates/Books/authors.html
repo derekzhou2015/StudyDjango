@@ -1,0 +1,49 @@
+{%extends 'base.html'%}{%block mainbody%}
+<table class="nav">
+  <tr>
+    <td class="nav-bar">{%include 'books/nav.html'%}</td>
+    <td class="container">
+      <table>
+        <thead>
+          <tr>
+            <th colspan="4" style="text-align: left">
+              <a href="add">Add Author</a>
+            </th>
+          </tr>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Tel</th>
+            <th>Birthday</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for author in context %}
+          <tr>
+            <td>{{author.id}}</td>
+            <td>{{author.name|truncatechars:15|upper}}</td>
+            <td>{{author.age}}</td>
+            <td>{{author.detail.get_gender_display|upper}}</td>
+            <td>{{author.detail.tel}}</td>
+            <td>{{author.detail.birthday|date:"Y/M/d"}}</td>
+            <td>
+              <a href="edit/{{author.id}}">Edit</a>|<a
+                href="del?id={{author.id}}"
+                >Delete</a
+              >
+            </td>
+          </tr>
+          {%empty%}
+          <tr>
+            <td colspan="7">No records</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </td>
+  </tr>
+</table>
+{%endblock mainbody%}

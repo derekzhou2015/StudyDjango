@@ -1,0 +1,107 @@
+{%extends 'base.html'%}{%block mainbody%}
+{%if results %}
+  <audio id='audio1'></audio>
+  <div style="border: 1px solid gray;width:50%;margin:0 auto;padding:30px 0">
+    <div id='t_box' style="font-size:100px;color:green">
+        undefind
+    </div>
+    <div id='i_box' style="display:none;">      
+      <h3>共词句：<span style="color:blue" id='w_t'>undefind</span>个</h3>
+      <h3>当前第：<span style="color:green" id='w_c'>undefind</span>个</h3>
+      <h3>剩&nbsp;&nbsp;&nbsp;&nbsp;余：<span style="color:red" id='w_s'>undefind</span>个</h3>
+    </div>
+  </div>
+  <br/><br/>
+  <script>
+    var i = 0
+    var [repeat,r_index] = [3,1]
+    var timer = 3
+    var d_l = {{results|safe}};
+    var count = d_l.length;
+
+    var audio1 = document.getElementById('audio1');
+    var t_box = document.getElementById('t_box');
+    var i_box = document.getElementById('i_box');
+    var t_e = document.getElementById('w_t')
+    var c_e = document.getElementById('w_c')
+    var s_e = document.getElementById('w_s')
+
+
+    /*
+    * Audio Events
+    */
+
+    audio1.onpause = () =>{
+      r_index++
+      if(r_index <= repeat)
+      {
+        setTimeout(()=>{
+          audio1.play();
+        },2000)
+      }
+    }
+
+    /*
+      Method
+    */
+
+
+    var do_update = () =>{
+      t_e.innerText = count
+      c_e.innerText = i +1
+      s_e.innerText = count - (i+1)
+    }
+
+    var to_play = (cur) =>{
+      var src = d_l[cur].sounds
+      audio1.src = '/media/'+src
+      audio1.play()
+      do_update()
+      r_index = 1
+    }
+
+    var on_play = ()=>{
+      audio1.play();
+    }
+
+    var on_next = ()=>{
+      if(i<count-1)
+      {
+        i++;
+        to_play(i)
+      }        
+    }
+
+    var on_prev = ()=>{
+      if(i>0)
+      {
+        i--;
+        to_play(i)
+      }     
+    }
+
+    t_box.innerText = timer
+    var setIntervalId = setInterval(()=>{
+      if(timer < 1){
+        do_update();
+        to_play(0);
+        t_box.style.display = 'none';
+        i_box.style.display = 'block';
+        clearInterval(setIntervalId);
+      }
+      t_box.innerText = timer
+      timer-- 
+    },1000)
+  
+  </script>
+  <div>
+    <button onclick="on_prev();">&lt;Previous</button>
+    <button onclick="on_play();">Relisten</button>
+    <button onclick="on_next();">Next &gt;</button>
+  </div>
+
+{%else %}
+  <div style="border: 1px solid gray;width:50%;margin:0 auto;padding:30px 0">No record.</div>
+{%endif %}
+<br/><br/><br/>
+{%endblock mainbody%}
